@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Return Device</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 20px;
+        }
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            margin: 0 auto;
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 10px;
+        }
+        select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-bottom: 15px;
+            font-size: 16px;
+        }
+        button[type="submit"] {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+            width: 100%;
+        }
+        button[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+  <form method="POST" action="{% url 'return_device' device.id %}">
+    {% csrf_token %}
+    <h2>Return Device</h2>
+    <p style="text-align: center;">Device: {{ device.device_type }}</p>
+    <label for="new_employee">Select Employee to return the device:</label>
+    <select name="new_employee" id="new_employee">
+      {% for employee in employees %}
+        <option value="{{ employee.id }}">{{ employee.name }}</option>
+      {% endfor %}
+    </select>
+    <br>
+    <button type="submit">Return Device</button>
+  </form>
+  <a href="{% url 'company_dashboard' %}"><button type="button" class="btn btn-primary">Back</button></a>
+</body>
+</html>

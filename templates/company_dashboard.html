@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Company Dashboard</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+        }
+        .container {
+            margin-top: 50px;
+        }
+        h1 {
+            text-align: center;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        }
+        .btn-container {
+            margin-top: 30px;
+            text-align: center;
+        }
+        .btn {
+            margin: 5px;
+        }
+        .list-group {
+            margin-top: 30px;
+        }
+        .list-group-item {
+            border: none;
+            border-bottom: 1px solid #ddd;
+        }
+        .list-group-item:last-child {
+            border-bottom: none;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Tracking Assets System</h1>
+    <div class="container">
+        <div class="btn-container">
+            <a href="{% url 'add_employee' %}" class="btn btn-primary">Add Employee</a>
+            <a href="{% url 'add_device' %}" class="btn btn-primary">Add Device</a>
+            <a href="{% url 'select_device' %}" class="btn btn-primary">Assign Device</a>
+            <a href="{% url 'device_log' %}" class="btn btn-primary">Device Log</a>
+            <a href="{% url 'select_device_for_return' %}" class="btn btn-danger">Return Device</a>
+        </div>
+        
+        <h3 style="text-align: center; margin-top: 30px;">Employees:</h3>
+        <ul class="list-group">
+            {% for employee in employees %}
+                <li class="list-group-item">{{ employee.name }} - {{ employee.position }}</li>
+            {% endfor %}
+        </ul>
+        <h3 style="text-align: center; margin-top: 30px;">Devices:</h3>
+        <ul class="list-group">
+            {% for device in devices %}
+                <li class="list-group-item">{{ device.serial_number }} - {{ device.device_type }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+
+</body>
+</html>
